@@ -8,6 +8,9 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 brew update
 brew upgrade
 
+# raycast
+brew install --cask raycast
+
 # karabiner
 brew install --cask karabiner-elements
 mkdir -p ~/.config/karabiner
@@ -54,8 +57,8 @@ brew install zoxide
 eval "$(zoxide init zsh)"
 alias cd="z"
 
-# yazi
-brew install yazi
+# diverse utilities
+brew install yazi fzf rg
 
 # lazygit
 brew install lazygit
@@ -72,6 +75,16 @@ for v in $(pyenv versions --bare); do
   PYENV_VERSION=$v pip install ruff black flake8
 done
 
+# terraform
+brew tap hashicorp/tap
+brew install hashicorp/tap/terraform
+
+# nodejs
+brew install node
+
+# intellij
+brew install --cask intellij-idea
 
 # neovim
 brew install neovim
+git clone git@github.com:zadigus/neovim-wsl.git ~/.config/nvim
