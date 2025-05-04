@@ -58,10 +58,7 @@ eval "$(zoxide init zsh)"
 alias cd="z"
 
 # diverse utilities
-brew install yazi fzf rg
-
-# lazygit
-brew install lazygit
+brew install wget yazi fzf rg fd lazygit
 
 # python
 brew install xz pyenv pyenv-virtualenv
