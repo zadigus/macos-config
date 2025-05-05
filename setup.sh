@@ -58,7 +58,11 @@ eval "$(zoxide init zsh)"
 alias cd="z"
 
 # diverse utilities
-brew install wget yazi fzf rg fd lazygit
+brew install wget yazi fzf rg fd
+
+# lazygit
+brew install lazygit
+cp lazygit-config.yml ~/Library/Application\ Support/lazygit/config.yml
 
 # python
 brew install xz pyenv pyenv-virtualenv
@@ -75,6 +79,14 @@ done
 # terraform
 brew tap hashicorp/tap
 brew install hashicorp/tap/terraform
+
+# k8s
+brew install kubectl
+brew install derailed/k9s/k9s
+
+# Azure
+brew install azure-cli
+az aks install-cli
 
 # nodejs
 brew install node
