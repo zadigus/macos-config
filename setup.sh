@@ -102,3 +102,26 @@ brew install --cask intellij-idea
 # neovim
 brew install neovim
 git clone git@github.com:zadigus/neovim-wsl.git ~/.config/nvim
+
+# environment variables
+cat <<EOF >>~/.zshrc
+ARTIFACTORY_URL=usaw-artifactoryp01.pc.cognex.com
+ARTIFACTORY_USERNAME=lmichel
+ARTIFACTORY_PASSWORD=changeme
+DOCKER_REGISTRY=${ARTIFACTORY_URL}:7004/
+SSL_CERT_FILE=~/.config/cognex/CGNX_cacert.pem
+NODE_EXTRA_CA_CERTS=${SSL_CERT_FILE}
+REQUESTS_CA_BUNDLE=${SSL_CERT_FILE}
+
+PIP_EXTRA_INDEX_URL=https://${ARTIFACTORY_USERNAME}:${ARTIFACTORY_PASSWORD}@${ARTIFACTORY_URL}/artifactory/api/pypi/pypi-usaw-local-MDL/simple/ https://${ARTIFACTORY_USERNAME}:${ARTIFACTORY_PASSWORD}@${ARTIFACTORY_URL}/artifactory/api/pypi/pypi-usaw-local-Edge_Learning/simple/ https://${ARTIFACTORY_USERNAME}:${ARTIFACTORY_PASSWORD}@${ARTIFACTORY_URL}/artifactory/api/pypi/pypi-usaw-local-DLCore/simple/
+PIP_INDEX_URL=https://${ARTIFACTORY_USERNAME}:${ARTIFACTORY_PASSWORD}@${ARTIFACTORY_URL}/artifactory/api/pypi/pypi-usaw-virtual-cognex/simple/
+
+export UV_INDEX_URL=${PIP_INDEX_URL}
+export UV_EXTRA_INDEX_URL=${PIP_EXTRA_INDEX_URL}
+
+alias docker-python-3.8="docker run --mount type=bind,src=$(pwd),target=/work -e PIP_EXTRA_INDEX_URL -e PIP_INDEX_URL -it ${DOCKER_REGISTRY}python:3.8 bash"
+alias docker-python-3.9="docker run --mount type=bind,src=$(pwd),target=/work -e PIP_EXTRA_INDEX_URL -e PIP_INDEX_URL -e UV_INDEX_URL -e UV_EXTRA_INDEX_URL -it ${DOCKER_REGISTRY}python:3.9 bash"
+alias docker-python-3.10="docker run --mount type=bind,src=$(pwd),target=/work -e PIP_EXTRA_INDEX_URL -e PIP_INDEX_URL -e UV_INDEX_URL -e UV_EXTRA_INDEX_URL -it ${DOCKER_REGISTRY}python:3.10 bash"
+alias docker-python-3.11="docker run --mount type=bind,src=$(pwd),target=/work -e PIP_EXTRA_INDEX_URL -e PIP_INDEX_URL -e UV_INDEX_URL -e UV_EXTRA_INDEX_URL -it ${DOCKER_REGISTRY}python:3.11 bash"
+alias docker-python-3.12="docker run --mount type=bind,src=$(pwd),target=/work -e PIP_EXTRA_INDEX_URL -e PIP_INDEX_URL -e UV_INDEX_URL -e UV_EXTRA_INDEX_URL -it ${DOCKER_REGISTRY}python:3.12 bash"
+EOF
