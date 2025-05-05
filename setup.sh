@@ -8,6 +8,23 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 brew update
 brew upgrade
 
+# wget
+brew install wget
+
+# certs
+path_to_cert=~/.config/cognex/CGNX_cacert.pem
+wget http://usna-wbscrptp01.pc.cognex.com/COMBINED_CERT_PACKAGE.pem -O ${path_to_cert}
+sudo security add-trusted-cert -d -r trustRoot -k /Library/Keychains/System.keychain ${path_to_cert}
+
+cat <<EOF >>~/.zshrc
+export SSL_CERT_FILE=${path_to_cert}
+EOF
+
+cat <<'EOF' >>~/.zshrc
+export NODE_EXTRA_CA_CERTS=${SSL_CERT_FILE}
+export REQUESTS_CA_BUNDLE=${SSL_CERT_FILE}
+EOF
+
 # raycast
 brew install --cask raycast
 
@@ -50,6 +67,11 @@ EOF
 brew install tmux
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 cp .tmux.conf ~/
+cat <<'EOF' >>~/.zshrc
+if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
+  tmux attach-session -t default || tmux new-session -s default
+fi
+EOF
 
 # eza
 brew install eza
@@ -61,15 +83,15 @@ eval "$(zoxide init zsh)"
 alias cd="z"
 
 # diverse utilities
-brew install wget yazi fzf rg fd
+brew install yazi fzf rg fd
 
 # git
 brew install lazygit
 cp lazygit-config.yml ~/Library/Application\ Support/lazygit/config.yml
 ssh-keygen -t ed25519 -b 4096 -C "laurent.michel@cognex.com" -f ~/.ssh/git_rsa
 cat <<'EOF' >>~/.zshrc
-eval "$(ssh-agent -s)"
-ssh-add ~/.ssh/git_rsa
+eval "$(ssh-agent -s)" > /dev/null
+ssh-add ~/.ssh/git_rsa ssh-add > /dev/null 2>&1
 EOF
 
 # python
@@ -96,6 +118,12 @@ brew install derailed/k9s/k9s
 brew install azure-cli
 az aks install-cli
 
+cat <<'EOF' >>~/.zshrc
+alias azl="az login --tenant 35f551b8-4936-4cae-b5d5-ede25fc4816f"
+EOF
+
+cat ${path_to_cert} >>/opt/homebrew/Cellar/azure-cli/2.71.0/libexec/lib/python3.12/site-packages/certifi/cacert.pem
+
 # nodejs
 brew install node
 
@@ -105,18 +133,6 @@ brew install --cask intellij-idea
 # neovim
 brew install neovim
 git clone git@github.com:zadigus/neovim-wsl.git ~/.config/nvim
-
-# certs
-path_to_cert=~/.config/cognex/CGNX_cacert.pem
-wget http://usna-wbscrptp01.pc.cognex.com/COMBINED_CERT_PACKAGE.pem -O ${path_to_cert}
-# TODO: doesn't work
-# sudo security add-trusted-cert -d -r trustAsRoot -k /Library/Keychains/System.keychain ${path_to_cert}
-
-cat <<'EOF' >>~/.zshrc
-export SSL_CERT_FILE=~/.config/cognex/CGNX_cacert.pem
-export NODE_EXTRA_CA_CERTS=${SSL_CERT_FILE}
-export REQUESTS_CA_BUNDLE=${SSL_CERT_FILE}
-EOF
 
 # environment variables
 cat <<'EOF' >>~/.zshrc
