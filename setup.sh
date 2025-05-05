@@ -21,6 +21,9 @@ brew install --cask wezterm
 brew install font-meslo-lg-nerd-font
 cp ./.wezterm.lua ~/
 
+# spotify
+brew install --cask spotify
+
 # pass
 brew install pass
 
@@ -64,7 +67,7 @@ brew install wget yazi fzf rg fd
 brew install lazygit
 cp lazygit-config.yml ~/Library/Application\ Support/lazygit/config.yml
 ssh-keygen -t ed25519 -b 4096 -C "laurent.michel@cognex.com" -f ~/.ssh/git_rsa
-cat <<EOF >>~/.zshrc
+cat <<'EOF' >>~/.zshrc
 eval "$(ssh-agent -s)"
 ssh-add ~/.ssh/git_rsa
 EOF
@@ -103,18 +106,27 @@ brew install --cask intellij-idea
 brew install neovim
 git clone git@github.com:zadigus/neovim-wsl.git ~/.config/nvim
 
-# environment variables
-cat <<EOF >>~/.zshrc
-ARTIFACTORY_URL=usaw-artifactoryp01.pc.cognex.com
-ARTIFACTORY_USERNAME=lmichel
-ARTIFACTORY_PASSWORD=changeme
-DOCKER_REGISTRY=${ARTIFACTORY_URL}:7004/
-SSL_CERT_FILE=~/.config/cognex/CGNX_cacert.pem
-NODE_EXTRA_CA_CERTS=${SSL_CERT_FILE}
-REQUESTS_CA_BUNDLE=${SSL_CERT_FILE}
+# certs
+path_to_cert=~/.config/cognex/CGNX_cacert.pem
+wget http://usna-wbscrptp01.pc.cognex.com/COMBINED_CERT_PACKAGE.pem -O ${path_to_cert}
+# TODO: doesn't work
+# sudo security add-trusted-cert -d -r trustAsRoot -k /Library/Keychains/System.keychain ${path_to_cert}
 
-PIP_EXTRA_INDEX_URL=https://${ARTIFACTORY_USERNAME}:${ARTIFACTORY_PASSWORD}@${ARTIFACTORY_URL}/artifactory/api/pypi/pypi-usaw-local-MDL/simple/ https://${ARTIFACTORY_USERNAME}:${ARTIFACTORY_PASSWORD}@${ARTIFACTORY_URL}/artifactory/api/pypi/pypi-usaw-local-Edge_Learning/simple/ https://${ARTIFACTORY_USERNAME}:${ARTIFACTORY_PASSWORD}@${ARTIFACTORY_URL}/artifactory/api/pypi/pypi-usaw-local-DLCore/simple/
-PIP_INDEX_URL=https://${ARTIFACTORY_USERNAME}:${ARTIFACTORY_PASSWORD}@${ARTIFACTORY_URL}/artifactory/api/pypi/pypi-usaw-virtual-cognex/simple/
+cat <<'EOF' >>~/.zshrc
+export SSL_CERT_FILE=~/.config/cognex/CGNX_cacert.pem
+export NODE_EXTRA_CA_CERTS=${SSL_CERT_FILE}
+export REQUESTS_CA_BUNDLE=${SSL_CERT_FILE}
+EOF
+
+# environment variables
+cat <<'EOF' >>~/.zshrc
+export ARTIFACTORY_UR=Lusaw-artifactoryp01.pc.cognex.com
+export ARTIFACTORY_USERNAME=lmichel
+export ARTIFACTORY_PASSWORD=changeme
+export DOCKER_REGISTRY=${ARTIFACTORY_URL}:7004/
+
+export PIP_EXTRA_INDEX_URL="https://${ARTIFACTORY_USERNAME}:${ARTIFACTORY_PASSWORD}@${ARTIFACTORY_URL}/artifactory/api/pypi/pypi-usaw-local-MDL/simple/ https://${ARTIFACTORY_USERNAME}:${ARTIFACTORY_PASSWORD}@${ARTIFACTORY_URL}/artifactory/api/pypi/pypi-usaw-local-Edge_Learning/simple/ https://${ARTIFACTORY_USERNAME}:${ARTIFACTORY_PASSWORD}@${ARTIFACTORY_URL}/artifactory/api/pypi/pypi-usaw-local-DLCore/simple/"
+export PIP_INDEX_URL="https://${ARTIFACTORY_USERNAME}:${ARTIFACTORY_PASSWORD}@${ARTIFACTORY_URL}/artifactory/api/pypi/pypi-usaw-virtual-cognex/simple/"
 
 export UV_INDEX_URL=${PIP_INDEX_URL}
 export UV_EXTRA_INDEX_URL=${PIP_EXTRA_INDEX_URL}
