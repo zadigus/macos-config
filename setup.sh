@@ -67,11 +67,12 @@ EOF
 brew install tmux
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 cp .tmux.conf ~/
-cat <<'EOF' >>~/.zshrc
-if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
-  tmux attach-session -t default || tmux new-session -s default
-fi
-EOF
+# TODO: this does not seem to work properly
+#cat <<'EOF' >>~/.zshrc
+#if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
+#  tmux attach-session -t default || tmux new-session -s default
+#fi
+#EOF
 
 # eza
 brew install eza
