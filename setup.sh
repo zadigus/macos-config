@@ -126,6 +126,15 @@ brew install node
 # intellij
 brew install --cask intellij-idea
 
+# ocmal
+brew install opam
+opam init
+opam install ocaml-lsp-server odoc ocamlformat utop merlin
+opam user-setup install
+
+# luarocks
+brew install luarocks
+
 # neovim
 brew install neovim
 git clone git@github.com:zadigus/neovim-wsl.git ~/.config/nvim
