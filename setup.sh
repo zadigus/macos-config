@@ -45,10 +45,11 @@ brew install --cask spotify
 brew install pass
 
 # zsh
-brew install powerlevel10k zsh-autosuggestions zsh-syntax-highlighting
+brew install powerlevel10k zsh-autosuggestions zsh-syntax-highlighting zsh-vi-mode
 echo "source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >>~/.zshrc
 echo "source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh" >>~/.zshrc
 echo "source $(brew --prefix)/share/powerlevel10k/powerlevel10k.zsh-theme" >>~/.zshrc
+echo "source $(brew --prefix)/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh" >>~/.zshrc
 source ~/.zshrc
 
 cat <<'EOF' >>~/.zshrc
