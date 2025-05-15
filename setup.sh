@@ -158,3 +158,10 @@ alias docker-python-3.10="docker run --mount type=bind,src=$(pwd),target=/work -
 alias docker-python-3.11="docker run --mount type=bind,src=$(pwd),target=/work -e PIP_EXTRA_INDEX_URL -e PIP_INDEX_URL -e UV_INDEX_URL -e UV_EXTRA_INDEX_URL -it ${DOCKER_REGISTRY}python:3.11 bash"
 alias docker-python-3.12="docker run --mount type=bind,src=$(pwd),target=/work -e PIP_EXTRA_INDEX_URL -e PIP_INDEX_URL -e UV_INDEX_URL -e UV_EXTRA_INDEX_URL -it ${DOCKER_REGISTRY}python:3.12 bash"
 EOF
+
+# vim config
+cat <<EOF >>~/.vimrc
+inoremap jk <Esc>
+" these are milliseconds
+set timeoutlen=300
+EOF
