@@ -46,10 +46,16 @@ brew install pass
 
 # zsh
 brew install powerlevel10k zsh-autosuggestions zsh-syntax-highlighting zsh-vi-mode
-echo "source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >>~/.zshrc
-echo "source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh" >>~/.zshrc
-echo "source $(brew --prefix)/share/powerlevel10k/powerlevel10k.zsh-theme" >>~/.zshrc
-echo "source $(brew --prefix)/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh" >>~/.zshrc
+cat <<'EOF' >>~/.zshrc
+source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+source $(brew --prefix)/share/powerlevel10k/powerlevel10k.zsh-theme
+function zvm_config() {
+  ZVM_VI_INSERT_ESCAPE_BINDKEY=jk
+}
+source /opt/homebrew/share/zsh-vi-mode/zsh-vi-mode.zsh
+EOF
+
 source ~/.zshrc
 
 cat <<'EOF' >>~/.zshrc
