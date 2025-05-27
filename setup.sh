@@ -114,7 +114,7 @@ brew tap hashicorp/tap
 brew install hashicorp/tap/terraform
 
 # k8s
-brew install kubectl helm derailed/k9s/k9s
+brew install kubectl helm derailed/k9s/k9s kubectx
 
 # Azure
 brew install azure-cli
