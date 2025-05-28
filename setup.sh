@@ -131,6 +131,7 @@ brew install node
 
 # intellij
 brew install --cask intellij-idea
+brew install maven
 
 # ocmal
 brew install opam
