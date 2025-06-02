@@ -53,7 +53,7 @@ source $(brew --prefix)/share/powerlevel10k/powerlevel10k.zsh-theme
 function zvm_config() {
   ZVM_VI_INSERT_ESCAPE_BINDKEY=jk
 }
-source /opt/homebrew/share/zsh-vi-mode/zsh-vi-mode.zsh
+source $(brew --prefix)/share/zsh-vi-mode/zsh-vi-mode.zsh
 EOF
 
 source ~/.zshrc
