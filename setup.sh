@@ -104,10 +104,6 @@ if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -
 EOF
 source ~/.zshrc
 pyenv install 3.10.17 3.11.12 3.12.10 3.13.3
-# TODO this does not work
-# for v in $(pyenv versions --bare); do
-# PYENV_VERSION=$v pip install ruff black flake8
-# done
 
 # terraform
 brew tap hashicorp/tap
@@ -132,6 +128,9 @@ brew install node
 # intellij
 brew install --cask intellij-idea
 brew install maven
+
+# devcontainer
+brew install devcontainer
 
 # ocmal
 brew install opam
