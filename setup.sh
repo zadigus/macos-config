@@ -98,6 +98,7 @@ EOF
 
 # python
 brew install xz pyenv pyenv-virtualenv
+curl -LsSf https://astral.sh/uv/install.sh | sh
 cat <<'EOF' >>~/.zshrc
 eval "$(pyenv init -)"
 if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
@@ -156,7 +157,9 @@ export PIP_EXTRA_INDEX_URL="https://${ARTIFACTORY_USERNAME}:${ARTIFACTORY_PASSWO
 export PIP_INDEX_URL="https://${ARTIFACTORY_USERNAME}:${ARTIFACTORY_PASSWORD}@${ARTIFACTORY_URL}/artifactory/api/pypi/pypi-usaw-virtual-cognex/simple/"
 
 export UV_INDEX_URL=${PIP_INDEX_URL}
+export UV_DEFAULT_INDEX=${UV_INDEX_URL}
 export UV_EXTRA_INDEX_URL=${PIP_EXTRA_INDEX_URL}
+export UV_INDEX=${UV_EXTRA_INDEX_URL}
 export UV_INDEX_PYPI_USAW_LOCAL_MDL_USERNAME=${ARTIFACTORY_USERNAME}
 export UV_INDEX_PYPI_USAW_LOCAL_MDL_PASSWORD=${ARTIFACTORY_PASSWORD}
 export UV_INDEX_PYPI_USAW_LOCAL_EDGE_LEARNING_USERNAME=${ARTIFACTORY_USERNAME}
