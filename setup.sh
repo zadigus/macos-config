@@ -77,12 +77,16 @@ cp .tmux.conf ~/
 
 # eza
 brew install eza
-echo "alias ls=\"eza --icons=always\"" >>~/.zshrc
+cat <<'EOF' >>~/.zshrc
+alias ls="eza --icons=always"
+EOF
 
 # zoxide
 brew install zoxide
+cat <<'EOF' >>~/.zshrc
 eval "$(zoxide init zsh)"
 alias cd="z"
+EOF
 
 # diverse utilities
 brew install yazi fzf rg fd
@@ -96,6 +100,7 @@ eval "$(ssh-agent -s)" > /dev/null
 ssh-add ~/.ssh/git_rsa ssh-add > /dev/null 2>&1
 EOF
 
+# TODO: fix this - install python with uv
 # python
 brew install xz pyenv pyenv-virtualenv
 curl -LsSf https://astral.sh/uv/install.sh | sh
