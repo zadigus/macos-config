@@ -187,8 +187,8 @@ EOF
 cat <<'EOF' >>~/.zshrc
 devup() {
   devcontainer up --mount "type=bind,source=$HOME/.config/nvim,target=/home/me/.config/nvim" \
-    --mount "type=bind,source=$HOME/.ssh,target=/home/me/.ssh,ro" \
-    --mount "type=bind,source=$HOME/.gitconfig,target=/home/me/.gitconfig,ro" \
+    --mount "type=bind,source=$HOME/.ssh,target=/home/me/.ssh" \
+    --mount "type=bind,source=$HOME/.gitconfig,target=/home/me/.gitconfig" \
     --workspace-folder .
 }
 alias devnvim="devcontainer exec --workspace-folder . nvim"
