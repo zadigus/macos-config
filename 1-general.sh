@@ -100,6 +100,9 @@ eval "$(ssh-agent -s)" > /dev/null
 ssh-add ~/.ssh/git_rsa ssh-add > /dev/null 2>&1
 EOF
 
+# obsidian
+brew install --cask obsidian
+
 # TODO: fix this - install python with uv
 # python
 brew install xz pyenv pyenv-virtualenv
@@ -149,7 +152,6 @@ brew install luarocks
 
 # neovim
 brew install neovim
-git clone git@github.com:zadigus/neovim-wsl.git ~/.config/nvim
 
 # environment variables
 cat <<'EOF' >>~/.zshrc
