@@ -192,7 +192,7 @@ devup() {
     --workspace-folder .
 }
 alias devnvim="devcontainer exec --workspace-folder . nvim"
-alias="docker-compose -f docker-compose.fixture.yml -f docker-compose.dev.yml down --remove-orphans"
+alias devdown="docker-compose -f docker-compose.fixture.yml -f docker-compose.dev.yml down --remove-orphans"
 EOF
 
 # vim config
