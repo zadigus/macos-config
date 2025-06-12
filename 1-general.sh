@@ -184,6 +184,17 @@ alias docker-python-3.12="docker run --mount type=bind,src=$(pwd),target=/work -
 alias docker-python-3.13="docker run --mount type=bind,src=$(pwd),target=/work -e UV_INDEX_PYPI_USAW_LOCAL_MDL_USERNAME -e UV_INDEX_PYPI_USAW_LOCAL_MDL_PASSWORD -e UV_INDEX_PYPI_USAW_LOCAL_EDGE_LEARNING_USERNAME -e UV_INDEX_PYPI_USAW_LOCAL_EDGE_LEARNING_PASSWORD -e UV_INDEX_PYPI_USAW_LOCAL_EDGE_LEARNING_PUBLIC_USERNAME -e UV_INDEX_PYPI_USAW_LOCAL_EDGE_LEARNING_PUBLIC_PASSWORD -e UV_INDEX_PYPI_USAW_VIRTUAL_COGNEX_USERNAME -e UV_INDEX_PYPI_USAW_VIRTUAL_COGNEX_PASSWORD -e PIP_EXTRA_INDEX_URL -e PIP_INDEX_URL -e UV_INDEX_URL -e UV_EXTRA_INDEX_URL -it ${DOCKER_REGISTRY}python:3.13 bash"
 EOF
 
+cat <<'EOF' >>~/.zshrc
+devup() {
+  devcontainer up --mount "type=bind,source=$HOME/.config/nvim,target=/home/me/.config/nvim" \
+    --mount "type=bind,source=$HOME/.ssh,target=/home/me/.ssh,ro" \
+    --mount "type=bind,source=$HOME/.gitconfig,target=/home/me/.gitconfig,ro" \
+    --workspace-folder .
+}
+alias devnvim="devcontainer exec --workspace-folder . nvim"
+alias="docker-compose -f docker-compose.fixture.yml -f docker-compose.dev.yml down --remove-orphans"
+EOF
+
 # vim config
 cat <<EOF >>~/.vimrc
 inoremap jk <Esc>
