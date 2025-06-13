@@ -1,0 +1,44 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/python
+{
+  "name": "Dev",
+  "dockerComposeFile": [
+    "${localWorkspaceFolder}/docker-compose.dev.yml",
+    "${localWorkspaceFolder}/docker-compose.fixture.yml"
+  ],
+  "service": "${localWorkspaceFolderBasename}",
+  "workspaceFolder": "/${localWorkspaceFolderBasename}",
+  "shutdownAction": "none",
+  // Features to add to the dev container. More info: https://containers.dev/features.
+  "features": {
+    "ghcr.io/devcontainers/features/common-utils:2": {
+      "configureZshAsDefaultShell": true
+    },
+    "ghcr.io/georgofenbeck/features/lazygit-linuxbinary:1": {},
+    "ghcr.io/devcontainers-extra/features/apt-get-packages:1": {
+      "packages": "luarocks"
+    },
+    "ghcr.io/devcontainers/features/node:1": {}
+  },
+  // Use 'forwardPorts' to make a list of ports inside the container available locally.
+  // "forwardPorts": [],
+  // Configure tool-specific properties.
+  // "customizations": {},
+  // Add the IDs of extensions you want installed when the container is created.
+  "remoteUser": "me",
+  "mounts": [
+    "type=bind,source=${localEnv:HOME}${localEnv:USERPROFILE}/.ssh,target=/home/me/.ssh,readonly",
+    "type=bind,source=${localEnv:HOME}${localEnv:USERPROFILE}/.gitconfig,target=/home/me/.gitconfig,readonly",
+    "type=bind,source=${localEnv:HOME}${localEnv:USERPROFILE}/.config/lazygit,target=/home/me/.config/lazygit,readonly",
+    "type=bind,source=${localEnv:HOME}${localEnv:USERPROFILE}/.config/nvim,target=/home/me/.config/nvim"
+    // Comment out to connect to host docker socket, though the dev image might not be configured properly to make it work
+    // On Windows use source=//var/run/docker.sock instead
+    // "type=bind,source=/var/run/docker.sock,target=/var/run/docker.sock"
+  ],
+  // Use 'postCreateCommand' to run commands after the container is created.
+  "postCreateCommand": "uv sync --frozen",
+  "containerEnv": {
+    "UV_LINK_MODE": "copy",
+    "UV_PROJECT_ENVIRONMENT": "/home/me/.venv"
+  }
+}
