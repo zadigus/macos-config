@@ -32,7 +32,8 @@
     "type=bind,source=${localEnv:HOME}${localEnv:USERPROFILE}/.config/lazygit,target=/home/me/.config/lazygit,readonly",
     "type=bind,source=${localEnv:HOME}${localEnv:USERPROFILE}/.config/nvim,target=/home/me/.config/nvim",
     "type=bind,source=${localEnv:HOME}${localEnv:USERPROFILE}/.zshrc,target=/home/me/.zshrc",
-    "type=bind,source=${localEnv:HOME}${localEnv:USERPROFILE}/.vimrc,target=/home/me/.vimrc"
+    "type=bind,source=${localEnv:HOME}${localEnv:USERPROFILE}/.vimrc,target=/home/me/.vimrc",
+    "type=bind,source=${localEnv:HOME}${localEnv:USERPROFILE}/.config/cognex,target=/home/me/.config/cognex"
   ],
   // Use 'postCreateCommand' to run commands after the container is created.
   "postCreateCommand": "uv sync --frozen",
