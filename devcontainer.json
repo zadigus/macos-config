@@ -30,10 +30,9 @@
     "type=bind,source=${localEnv:HOME}${localEnv:USERPROFILE}/.ssh,target=/home/me/.ssh,readonly",
     "type=bind,source=${localEnv:HOME}${localEnv:USERPROFILE}/.gitconfig,target=/home/me/.gitconfig,readonly",
     "type=bind,source=${localEnv:HOME}${localEnv:USERPROFILE}/.config/lazygit,target=/home/me/.config/lazygit,readonly",
-    "type=bind,source=${localEnv:HOME}${localEnv:USERPROFILE}/.config/nvim,target=/home/me/.config/nvim"
-    // Comment out to connect to host docker socket, though the dev image might not be configured properly to make it work
-    // On Windows use source=//var/run/docker.sock instead
-    // "type=bind,source=/var/run/docker.sock,target=/var/run/docker.sock"
+    "type=bind,source=${localEnv:HOME}${localEnv:USERPROFILE}/.config/nvim,target=/home/me/.config/nvim",
+    "type=bind,source=${localEnv:HOME}${localEnv:USERPROFILE}/.zshrc,target=/home/me/.zshrc",
+    "type=bind,source=${localEnv:HOME}${localEnv:USERPROFILE}/.vimrc,target=/home/me/.vimrc"
   ],
   // Use 'postCreateCommand' to run commands after the container is created.
   "postCreateCommand": "uv sync --frozen",

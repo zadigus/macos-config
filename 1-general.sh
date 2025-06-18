@@ -183,8 +183,8 @@ EOF
 
 # devcontainer
 brew install devcontainer
-cp devcontainer.json ~/.config/cognex
 devcontainer_config_path=~/.config/cognex/devcontainer.json
+cp devcontainer.json ${devcontainer_config_path}
 
 cat <<EOF >>~/.zshrc
 devup() {
@@ -200,4 +200,5 @@ cat <<EOF >>~/.vimrc
 inoremap jk <Esc>
 " these are milliseconds
 set timeoutlen=300
+set relativenumber
 EOF
