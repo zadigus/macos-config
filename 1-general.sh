@@ -117,6 +117,7 @@ pyenv install 3.10.17 3.11.12 3.12.10 3.13.3
 # terraform
 brew tap hashicorp/tap
 brew install hashicorp/tap/terraform
+brew install terragrunt
 
 # k8s
 brew install kubectl helm derailed/k9s/k9s kubectx
