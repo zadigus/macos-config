@@ -103,6 +103,12 @@ EOF
 # obsidian
 brew install --cask obsidian
 
+# golang
+brew install go
+cat <<'EOF' >>~/.zshrc
+export PATH=$HOME/go/bin:$PATH
+EOF
+
 # TODO: fix this - install python with uv
 # python
 brew install xz pyenv pyenv-virtualenv
@@ -125,6 +131,7 @@ brew install kubectl helm derailed/k9s/k9s kubectx
 # Azure
 brew install azure-cli
 az aks install-cli
+go install github.com/netr0m/az-pim-cli@latest
 
 cat <<'EOF' >>~/.zshrc
 alias azl="az login --tenant 35f551b8-4936-4cae-b5d5-ede25fc4816f"
