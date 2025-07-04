@@ -153,8 +153,14 @@ opam install ocaml-lsp-server odoc ocamlformat utop merlin
 opam user-setup install
 
 # coq
-brew install coq
-python3 -m pip install pynvim
+# cf. https://rocq-prover.org/docs/using-opam
+eval $(opam env)
+opam pin add rocq-prover 9.0.0
+opam install rocqide
+opam repo add rocq-released https://rocq-prover.org/opam/released
+# brew install coq
+# brew install --cask coq-platform
+# python3 -m pip install pynvim
 
 # luarocks
 brew install luarocks
