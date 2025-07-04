@@ -152,6 +152,10 @@ opam init
 opam install ocaml-lsp-server odoc ocamlformat utop merlin
 opam user-setup install
 
+# coq
+brew install coq
+python3 -m pip install pynvim
+
 # luarocks
 brew install luarocks
 
