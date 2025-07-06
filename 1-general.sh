@@ -176,6 +176,13 @@ set timeoutlen=300
 set relativenumber
 EOF
 
+ed -s ~/.vimrc <<EOF
+0a
+let mapleader = "\<Space>"
+.
+w
+EOF
+
 # coqtail support will work only on vim installed by homebrew
 # because that version has python support (check with vim --version)
 mkdir -p ~/.vim/pack/coq/start
