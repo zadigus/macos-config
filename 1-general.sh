@@ -166,7 +166,21 @@ opam repo add rocq-released https://rocq-prover.org/opam/released
 brew install luarocks
 
 # neovim
-brew install neovim
+brew install vim neovim
+
+# vim config
+cat <<EOF >>~/.vimrc
+inoremap jk <Esc>
+" these are milliseconds
+set timeoutlen=300
+set relativenumber
+EOF
+
+# coqtail support will work only on vim installed by homebrew
+# because that version has python support (check with vim --version)
+mkdir -p ~/.vim/pack/coq/start
+git clone https://github.com/whonore/Coqtail.git ~/.vim/pack/coq/start/Coqtail
+vim +helptags\ ~/.vim/pack/coq/start/Coqtail/doc +q
 
 # environment variables
 cat <<'EOF' >>~/.zshrc
@@ -211,12 +225,4 @@ devup() {
 }
 alias devnvim="devcontainer exec --config ${devcontainer_config_path} --workspace-folder . uv run nvim"
 alias devdown="docker-compose -f docker-compose.fixture.yml -f docker-compose.dev.yml down --remove-orphans"
-EOF
-
-# vim config
-cat <<EOF >>~/.vimrc
-inoremap jk <Esc>
-" these are milliseconds
-set timeoutlen=300
-set relativenumber
 EOF
