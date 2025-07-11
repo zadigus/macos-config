@@ -98,6 +98,7 @@ ssh-keygen -t ed25519 -b 4096 -C "laurent.michel@cognex.com" -f ~/.ssh/git_rsa
 cat <<'EOF' >>~/.zshrc
 eval "$(ssh-agent -s)" > /dev/null
 ssh-add ~/.ssh/git_rsa ssh-add > /dev/null 2>&1
+autoload -Uz compinit && compinit
 EOF
 
 # obsidian
