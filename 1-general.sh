@@ -110,17 +110,12 @@ cat <<'EOF' >>~/.zshrc
 export PATH=$HOME/go/bin:$PATH
 EOF
 
-# TODO: fix this - install python with uv
 # python
-brew install xz pyenv pyenv-virtualenv
 curl -LsSf https://astral.sh/uv/install.sh | sh
 cat <<'EOF' >>~/.zshrc
-eval "$(pyenv init -)"
-if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
 export PATH=~/.local/bin:$PATH
 EOF
 source ~/.zshrc
-pyenv install 3.10.17 3.11.12 3.12.10 3.13.3
 
 # terraform
 brew tap hashicorp/tap
