@@ -190,7 +190,9 @@ vim +helptags\ ~/.vim/pack/coq/start/Coqtail/doc +q
 cat <<'EOF' >>~/.zshrc
 export ARTIFACTORY_URL=usaw-artifactoryp01.pc.cognex.com
 export ARTIFACTORY_USERNAME=lmichel
+export ARTIFACTORY_USER_NAME=${ARTIFACTORY_USERNAME}
 export ARTIFACTORY_PASSWORD=changeme
+export ARTIFACTORY_USER_PWD=${ARTIFACTORY_PASSWORD}
 export DOCKER_REGISTRY=${ARTIFACTORY_URL}:7004/
 
 export PIP_EXTRA_INDEX_URL="https://${ARTIFACTORY_USERNAME}:${ARTIFACTORY_PASSWORD}@${ARTIFACTORY_URL}/artifactory/api/pypi/pypi-usaw-local-MDL/simple/ https://${ARTIFACTORY_USERNAME}:${ARTIFACTORY_PASSWORD}@${ARTIFACTORY_URL}/artifactory/api/pypi/pypi-usaw-local-Edge_Learning/simple/ https://${ARTIFACTORY_USERNAME}:${ARTIFACTORY_PASSWORD}@${ARTIFACTORY_URL}/artifactory/api/pypi/pypi-usaw-local-DLCore/simple/"
