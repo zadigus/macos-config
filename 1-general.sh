@@ -240,6 +240,23 @@ cp k8scontainer.json $k8scontainer_config_path
 cat <<EOF >>~./zshrc
 k8sup() {
     ./.k8scontainer/up.sh -c $k8scontainer_config_path
+
+    deployment=$(basename $PWD)
+    namespace="application"
+
+    kubectl rollout status deployment/"$deployment" -n "$namespace"
+
+    while true; do
+        not_ready=$(kubectl get pods -n "$namespace" -l app.kubernetes.io/name="$deployment" -o jsonpath='{.items[?(@.status.phase!="Running")].metadata.name}')
+
+        if [[ -z "$not_ready" ]]; then
+            echo "Development deployment is ready"
+            break
+        else
+            echo "Waiting for development pods to be in 'Running' state: $not_ready"
+            sleep 5
+        fi
+    done
 }
 k8snvim() {
     deployment_name=$(basename $PWD)
