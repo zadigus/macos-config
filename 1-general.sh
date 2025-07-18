@@ -123,7 +123,7 @@ brew install hashicorp/tap/terraform
 brew install terragrunt
 
 # k8s
-brew install kubectl helm derailed/k9s/k9s kubectx
+brew install kubectl helm derailed/k9s/k9s kubectx jinja2-cli
 
 # Azure
 brew install azure-cli
@@ -231,4 +231,31 @@ devup() {
 }
 alias devnvim="devcontainer exec --config ${devcontainer_config_path} --workspace-folder . uv run nvim"
 alias devdown="docker-compose -f docker-compose.fixture.yml -f docker-compose.dev.yml down --remove-orphans"
+EOF
+
+# k8scontainer
+k8scontainer_config_path=~/.config/cognex/k8scontainer.yaml
+cp k8scontainer.json $k8scontainer_config_path
+
+cat <<EOF >>~./zshrc
+k8sup() {
+    ./.k8scontainer/up.sh -c $k8scontainer_config_path
+}
+k8snvim() {
+    deployment_name=$(basename $PWD)
+    namespace="application"
+    pod_name=$(kubectl get pods -n "$namespace" \
+    -l app.kubernetes.io/name="$deployment_name" \
+    -o jsonpath="{.items[0].metadata.name}")
+
+    if [ -z "$pod_name" ]; then
+        echo "No pod found for deployment '$deployment_name' in namespace '$namespace'"
+        exit 1
+    fi
+
+    echo "Attaching to pod: $pod_name"
+    kubectl -n $namespace exec -it $pod_name -- /bin/bash -lc 'uv run nvim'
+}
+alias k8sdown="./.k8scontainer/down.sh"
+alias k8sdownall="./.k8scontainer/down_all.sh"
 EOF

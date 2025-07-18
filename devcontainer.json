@@ -14,7 +14,7 @@
     "ghcr.io/devcontainers/features/common-utils:2": {
       "configureZshAsDefaultShell": true
     },
-    "ghcr.io/georgofenbeck/features/lazygit-linuxbinary:1": {},
+    //"ghcr.io/georgofenbeck/features/lazygit-linuxbinary:1": {},
     "ghcr.io/devcontainers-extra/features/apt-get-packages:1": {
       "packages": "luarocks"
     },

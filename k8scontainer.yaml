@@ -1,0 +1,45 @@
+volumes:
+  - name: app
+    hostPath:
+      path: /Users/lmichel/workspace/backends/worker-scaler/
+      type: Directory
+  - name: ssh
+    hostPath:
+      path: /Users/lmichel/.ssh
+      type: Directory
+  - name: gitconfig
+    hostPath:
+      path: /Users/lmichel/.gitconfig
+      type: File
+  - name: lazygit
+    hostPath:
+      path: /Users/lmichel/.config/lazygit
+      type: Directory
+  - name: nvim
+    hostPath:
+      path: /Users/lmichel/.config/nvim
+      type: Directory
+  - name: vim
+    hostPath:
+      path: /Users/lmichel/.vimrc
+      type: File
+  - name: cognex-config
+    hostPath:
+      path: /Users/lmichel/.config/cognex
+      type: Directory
+volumeMounts:
+  - mountPath: /home/me/.ssh
+    name: ssh
+  - mountPath: /work
+    name: app
+  - mountPath: /home/me/.gitconfig
+    name: gitconfig
+  - mountPath: /home/me/.config/lazygit
+    name: lazygit
+  - mountPath: /home/me/.config/nvim
+    name: nvim
+  - mountPath: /home/me/.vimrc
+    name: vim
+  - mountPath: /home/me/.config/cognex
+    name: cognex-config
+workingDir: /work
