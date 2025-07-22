@@ -239,7 +239,7 @@ cp k8scontainer.json $k8scontainer_config_path
 
 cat <<EOF >>~./zshrc
 k8sup() {
-    ./.k8scontainer/up.sh -c $k8scontainer_config_path
+    envsubst '$PWD' < ${k8scontainer_config_path} | ./.k8scontainer/up.sh -c -
 
     deployment=$(basename $PWD)
     namespace="application"

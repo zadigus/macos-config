@@ -1,7 +1,7 @@
 volumes:
   - name: app
     hostPath:
-      path: /Users/lmichel/workspace/backends/worker-scaler/
+      path: ${PWD}
       type: Directory
   - name: ssh
     hostPath:
