@@ -155,9 +155,8 @@ eval $(opam env)
 opam pin add rocq-prover 9.0.0
 opam install rocqide
 opam repo add rocq-released https://rocq-prover.org/opam/released
-# brew install coq
-# brew install --cask coq-platform
-# python3 -m pip install pynvim
+# this install coqc and coq_makefile among other things
+opam install coq
 
 # luarocks
 brew install luarocks
