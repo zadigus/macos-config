@@ -100,6 +100,7 @@ eval "$(ssh-agent -s)" > /dev/null
 ssh-add ~/.ssh/git_rsa ssh-add > /dev/null 2>&1
 autoload -Uz compinit && compinit
 EOF
+cp git-ssh.sh ~/.config/cognex/
 
 # obsidian
 brew install --cask obsidian
