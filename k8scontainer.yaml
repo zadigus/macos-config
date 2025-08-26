@@ -27,6 +27,10 @@ volumes:
     hostPath:
       path: /Users/lmichel/.config/cognex
       type: Directory
+  - name: git-ssh
+    hostPath:
+      path: /Users/lmichel/.config/cognex/git-ssh.sh
+      type: File
 volumeMounts:
   - mountPath: /home/me/.ssh
     name: ssh
@@ -42,4 +46,6 @@ volumeMounts:
     name: vim
   - mountPath: /home/me/.config/cognex
     name: cognex-config
+  - mountPath: /etc/profile.d/git-ssh.sh
+    name: git-ssh
 workingDir: /work
