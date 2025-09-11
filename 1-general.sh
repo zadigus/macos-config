@@ -241,8 +241,10 @@ cat <<EOF >>~./zshrc
 k8sup() {
     envsubst '$PWD' < ${k8scontainer_config_path} | ./.k8scontainer/up.sh -c -
 
-    deployment=$(basename $PWD)
-    namespace="application"
+    export $(cat .k8scontainer/.env | xargs)
+
+    deployment=${APP_NAME}
+    namespace=${APP_NAMESPACE}
 
     kubectl rollout status deployment/"$deployment" -n "$namespace"
 
@@ -259,8 +261,11 @@ k8sup() {
     done
 }
 k8snvim() {
-    deployment_name=$(basename $PWD)
-    namespace="application"
+    export $(cat .k8scontainer/.env | xargs)
+
+    deployment=${APP_NAME}
+    namespace=${APP_NAMESPACE}
+
     pod_name=$(kubectl get pods -n "$namespace" \
     -l app.kubernetes.io/name="$deployment_name" \
     -o jsonpath="{.items[0].metadata.name}")
