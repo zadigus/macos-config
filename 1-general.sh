@@ -261,6 +261,8 @@ k8sup() {
     done
 }
 k8snvim() {
+    kubectl config use-context docker-desktop
+    
     export $(cat .k8scontainer/.env | xargs)
 
     deployment=${APP_NAME}
