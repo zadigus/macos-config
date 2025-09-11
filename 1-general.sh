@@ -269,11 +269,11 @@ k8snvim() {
     namespace=${APP_NAMESPACE}
 
     pod_name=$(kubectl get pods -n "$namespace" \
-    -l app.kubernetes.io/name="$deployment_name" \
+    -l app.kubernetes.io/name="$deployment" \
     -o jsonpath="{.items[0].metadata.name}")
 
     if [ -z "$pod_name" ]; then
-        echo "No pod found for deployment '$deployment_name' in namespace '$namespace'"
+        echo "No pod found for deployment '$deployment' in namespace '$namespace'"
         exit 1
     fi
 
