@@ -239,7 +239,7 @@ cp k8scontainer.json $k8scontainer_config_path
 
 cat <<EOF >>~./zshrc
 k8sup() {
-    envsubst '$PWD' < ${k8scontainer_config_path} | ./.k8scontainer/up.sh -c -
+    envsubst '$PWD $HOME' < ${k8scontainer_config_path} | ./.k8scontainer/up.sh -c -
 
     export $(cat .k8scontainer/.env | xargs)
 

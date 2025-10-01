@@ -5,31 +5,31 @@ volumes:
       type: Directory
   - name: ssh
     hostPath:
-      path: /Users/lmichel/.ssh
+      path: $HOME/.ssh
       type: Directory
   - name: gitconfig
     hostPath:
-      path: /Users/lmichel/.gitconfig
+      path: $HOME/.gitconfig
       type: File
   - name: lazygit
     hostPath:
-      path: /Users/lmichel/.config/lazygit
+      path: $HOME/.config/lazygit
       type: Directory
   - name: nvim
     hostPath:
-      path: /Users/lmichel/.config/nvim
+      path: $HOME/.config/nvim
       type: Directory
   - name: vim
     hostPath:
-      path: /Users/lmichel/.vimrc
+      path: $HOME/.vimrc
       type: File
   - name: cognex-config
     hostPath:
-      path: /Users/lmichel/.config/cognex
+      path: $HOME/.config/cognex
       type: Directory
   - name: git-ssh
     hostPath:
-      path: /Users/lmichel/.config/cognex/git-ssh.sh
+      path: $HOME/.config/cognex/git-ssh.sh
       type: File
 volumeMounts:
   - mountPath: /home/me/.ssh
