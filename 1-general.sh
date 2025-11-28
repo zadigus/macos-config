@@ -91,6 +91,12 @@ EOF
 # diverse utilities
 brew install yazi fzf rg fd
 
+# direnv
+brew install direnv
+cat <<'EOF' >>~/.zshrc
+eval "$(direnv hook zsh)"
+EOF
+
 # git
 brew install lazygit
 cp lazygit-config.yml ~/Library/Application\ Support/lazygit/config.yml
