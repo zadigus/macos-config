@@ -289,3 +289,6 @@ k8snvim() {
 alias k8sdown="./.k8scontainer/down.sh"
 alias k8sdownall="./.k8scontainer/down_all.sh"
 EOF
+
+# opencode
+brew install anomalyco/tap/opencode
