@@ -70,6 +70,10 @@ bindkey '^[[A' history-search-backward
 bindkey '^[[B' history-search-forward
 EOF
 
+# dns resolution azure stuff
+sudo mkdir /etc/resolver
+sudo cp ./etc/resolver/* /etc/resolver/
+
 # tmux
 brew install tmux
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
@@ -89,7 +93,7 @@ alias cd="z"
 EOF
 
 # diverse utilities
-brew install yazi fzf rg fd
+brew install yazi fzf rg fd bat
 
 # direnv
 brew install direnv
