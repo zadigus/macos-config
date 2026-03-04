@@ -93,7 +93,7 @@ alias cd="z"
 EOF
 
 # diverse utilities
-brew install yazi fzf rg fd bat
+brew install yazi fzf rg fd bat yq jq
 
 # direnv
 brew install direnv
