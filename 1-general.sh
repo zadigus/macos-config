@@ -297,3 +297,6 @@ EOF
 
 # opencode
 brew install anomalyco/tap/opencode
+
+# telepresence
+brew install telepresenceio/telepresence/telepresence-oss
