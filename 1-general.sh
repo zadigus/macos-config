@@ -313,8 +313,12 @@ ln -s ~/.config/opencode/superpowers/skills ~/.config/opencode/skills/superpower
 
 git clone ssh://git@usaw-bitbucketp01.pc.cognex.com:7999/~lmichel/skills.git ~/.config/opencode/skills/skills-lmichel
 
+# For Bitbucket, the token can be found under
+# https://usaw-bitbucketp01.pc.cognex.com/plugins/servlet/access-tokens/users/<username>/manage
+# For TeamCity, the token gets created in the user's profile
 cat <<'EOF' >>~/.zshrc
 export TEAMCITY_OPENCODE_TOKEN="changeme"
+export BITBUCKET_OPENCODE_TOKEN="changeme"
 EOF
 
 # telepresence
