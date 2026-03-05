@@ -1,5 +1,7 @@
 #! /bin/sh
 
+# CAUTION: make sure to replace any occurence of "changeme" with the relevant secrets
+
 # homebrew
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 echo >>/Users/lmichel/.zprofile
@@ -308,6 +310,12 @@ mkdir -p ~/.config/opencode/plugins ~/.config/opencode/skills
 rm -rf ~/.config/opencode/skills/superpowers ~/.config/opencode/plugins/superpowers.js
 ln -s ~/.config/opencode/superpowers/.opencode/plugins/superpowers.js ~/.config/opencode/plugins/superpowers.js
 ln -s ~/.config/opencode/superpowers/skills ~/.config/opencode/skills/superpowers
+
+git clone ssh://git@usaw-bitbucketp01.pc.cognex.com:7999/~lmichel/skills.git ~/.config/opencode/skills/skills-lmichel
+
+cat <<'EOF' >>~/.zshrc
+export TEAMCITY_OPENCODE_TOKEN="changeme"
+EOF
 
 # telepresence
 brew install telepresenceio/telepresence/telepresence-oss
