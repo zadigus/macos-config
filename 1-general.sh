@@ -298,5 +298,16 @@ EOF
 # opencode
 brew install anomalyco/tap/opencode
 
+# superpowers
+if [ -d ~/.config/opencode/superpowers ]; then
+    cd ~/.config/opencode/superpowers && git pull
+else
+    git clone https://github.com/obra/superpowers.git ~/.config/opencode/superpowers
+fi
+mkdir -p ~/.config/opencode/plugins ~/.config/opencode/skills
+rm -rf ~/.config/opencode/skills/superpowers ~/.config/opencode/plugins/superpowers.js
+ln -s ~/.config/opencode/superpowers/.opencode/plugins/superpowers.js ~/.config/opencode/plugins/superpowers.js
+ln -s ~/.config/opencode/superpowers/skills ~/.config/opencode/skills/superpowers
+
 # telepresence
 brew install telepresenceio/telepresence/telepresence-oss
