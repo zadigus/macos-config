@@ -317,8 +317,8 @@ git clone ssh://git@usaw-bitbucketp01.pc.cognex.com:7999/~lmichel/skills.git ~/.
 # https://usaw-bitbucketp01.pc.cognex.com/plugins/servlet/access-tokens/users/<username>/manage
 # For TeamCity, the token gets created in the user's profile
 cat <<'EOF' >>~/.zshrc
-export TEAMCITY_OPENCODE_TOKEN="changeme"
-export BITBUCKET_OPENCODE_TOKEN="changeme"
+export TEAMCITY_AGENTS_TOKEN="changeme"
+export BITBUCKET_AGENTS_TOKEN="changeme"
 EOF
 
 # telepresence
