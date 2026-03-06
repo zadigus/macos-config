@@ -39,6 +39,9 @@
   "postCreateCommand": "uv sync --frozen",
   "containerEnv": {
     "UV_LINK_MODE": "copy",
-    "UV_PROJECT_ENVIRONMENT": "/home/me/.venv"
+    "UV_PROJECT_ENVIRONMENT": "/home/me/.venv",
+    "ARTIFACTORY_URL": "${localEnv:ARTIFACTORY_URL}",
+    "ARTIFACTORY_USERNAME": "${localEnv:ARTIFACTORY_USERNAME}",
+    "ARTIFACTORY_PASSWORD": "${localEnv:ARTIFACTORY_PASSWORD}"
   }
 }

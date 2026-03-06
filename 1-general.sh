@@ -219,7 +219,7 @@ cat <<'EOF' >>~/.zshrc
 export ARTIFACTORY_URL=usaw-artifactoryp01.pc.cognex.com
 export ARTIFACTORY_USERNAME=lmichel
 export ARTIFACTORY_USER_NAME=${ARTIFACTORY_USERNAME}
-export ARTIFACTORY_PASSWORD=$(pass ci/artifactory-token)
+export ARTIFACTORY_PASSWORD=${ARTIFACTORY_PASSWORD:-$(pass ci/artifactory-token)}
 export ARTIFACTORY_USER_PWD=${ARTIFACTORY_PASSWORD}
 export DOCKER_REGISTRY=${ARTIFACTORY_URL}:7004/
 
