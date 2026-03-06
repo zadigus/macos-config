@@ -1,7 +1,5 @@
 #! /bin/sh
 
-# CAUTION: make sure to replace any occurence of "changeme" with the relevant secrets
-
 # homebrew
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 echo >>/Users/lmichel/.zprofile
@@ -221,7 +219,7 @@ cat <<'EOF' >>~/.zshrc
 export ARTIFACTORY_URL=usaw-artifactoryp01.pc.cognex.com
 export ARTIFACTORY_USERNAME=lmichel
 export ARTIFACTORY_USER_NAME=${ARTIFACTORY_USERNAME}
-export ARTIFACTORY_PASSWORD=changeme
+export ARTIFACTORY_PASSWORD=$(pass ci/artifactory-token)
 export ARTIFACTORY_USER_PWD=${ARTIFACTORY_PASSWORD}
 export DOCKER_REGISTRY=${ARTIFACTORY_URL}:7004/
 
@@ -329,14 +327,6 @@ ln -s ~/.config/opencode/superpowers/.opencode/plugins/superpowers.js ~/.config/
 ln -s ~/.config/opencode/superpowers/skills ~/.config/opencode/skills/superpowers
 
 git clone ssh://git@usaw-bitbucketp01.pc.cognex.com:7999/~lmichel/skills.git ~/.config/opencode/skills/skills-lmichel
-
-# For Bitbucket, the token can be found under
-# https://usaw-bitbucketp01.pc.cognex.com/plugins/servlet/access-tokens/users/<username>/manage
-# For TeamCity, the token gets created in the user's profile
-cat <<'EOF' >>~/.zshrc
-export TEAMCITY_AGENTS_TOKEN="changeme"
-export BITBUCKET_AGENTS_TOKEN="changeme"
-EOF
 
 # telepresence
 brew install telepresenceio/telepresence/telepresence-oss
