@@ -44,7 +44,24 @@ cp ./.wezterm.lua ~/
 brew install --cask spotify
 
 # pass
-brew install pass
+brew install gnupg pass pinentry-mac
+gpgconf --kill gpg-agent
+cat <<'EOF' >>~/.zshrc
+export GPG_TTY=$(tty)
+EOF
+git clone ssh://git@usaw-bitbucketp01.pc.cognex.com:7999/~lmichel/pass-store.git ~/.password-store
+
+# on the old laptop, run gpg --list-keys --fingerprint
+# get the fingerprint without spaces - this gives
+fp="2FDBAFCD682D94902E3D64D38C02FDCEB0A18730"
+# then run this too on that old laptop:
+# gpg --export-secret-keys --armor $fp >~/private-$fp.asc
+# gpg --export --armor $fp >~/public-$fp.asc
+# gpg --export-ownertrust >~/ownertrust.txt
+
+gpg --import ~/public-$fp.asc
+gpg --import ~/private-$fp.asc
+gpg --import-ownertrust ~/ownertrust.txt
 
 # zsh
 brew install powerlevel10k zsh-autosuggestions zsh-syntax-highlighting zsh-vi-mode
