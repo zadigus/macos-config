@@ -330,3 +330,6 @@ git clone ssh://git@usaw-bitbucketp01.pc.cognex.com:7999/~lmichel/skills.git ~/.
 
 # telepresence
 brew install telepresenceio/telepresence/telepresence-oss
+
+# mirrord
+brew install metalbear-co/mirrord/mirrord
