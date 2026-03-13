@@ -312,8 +312,8 @@ alias k8sdown="./.k8scontainer/down.sh"
 alias k8sdownall="./.k8scontainer/down_all.sh"
 EOF
 
-# opencode
-brew install anomalyco/tap/opencode
+# opencode / copilot-cli
+brew install anomalyco/tap/opencode copilot-cli
 
 # superpowers
 if [ -d ~/.config/opencode/superpowers ]; then
@@ -327,6 +327,7 @@ ln -s ~/.config/opencode/superpowers/.opencode/plugins/superpowers.js ~/.config/
 ln -s ~/.config/opencode/superpowers/skills ~/.config/opencode/skills/superpowers
 
 git clone ssh://git@usaw-bitbucketp01.pc.cognex.com:7999/~lmichel/skills.git ~/.config/opencode/skills/skills-lmichel
+git clone git@github.com:zadigus/skills.git ~/.config/opencode/skills/zadigus
 
 # telepresence
 brew install telepresenceio/telepresence/telepresence-oss
