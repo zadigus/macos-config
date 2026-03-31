@@ -134,6 +134,9 @@ autoload -Uz compinit && compinit
 EOF
 cp git-ssh.sh ~/.config/cognex/
 
+brew install git-lfs
+git lfs install
+
 # obsidian
 brew install --cask obsidian
 
