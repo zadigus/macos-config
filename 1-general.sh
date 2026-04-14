@@ -298,7 +298,7 @@ k8sup() {
 }
 k8snvim() {
     kubectl config use-context docker-desktop
-    
+
     export $(cat .k8scontainer/.env | xargs)
 
     deployment=${APP_NAME}
@@ -336,6 +336,7 @@ ln -s ~/.config/opencode/superpowers/skills ~/.config/opencode/skills/superpower
 
 git clone ssh://git@usaw-bitbucketp01.pc.cognex.com:7999/~lmichel/skills.git ~/.config/opencode/skills/skills-lmichel
 git clone git@github.com:zadigus/skills.git ~/.config/opencode/skills/zadigus
+git clone ssh://git@usaw-bitbucketp01.pc.cognex.com:7999/~lmichel/agents.git ~/.config/opencode/agents
 
 # telepresence
 brew install telepresenceio/telepresence/telepresence-oss
