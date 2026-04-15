@@ -337,6 +337,7 @@ ln -s ~/.config/opencode/superpowers/skills ~/.config/opencode/skills/superpower
 git clone ssh://git@usaw-bitbucketp01.pc.cognex.com:7999/~lmichel/skills.git ~/.config/opencode/skills/skills-lmichel
 git clone git@github.com:zadigus/skills.git ~/.config/opencode/skills/zadigus
 git clone ssh://git@usaw-bitbucketp01.pc.cognex.com:7999/~lmichel/agents.git ~/.config/opencode/agents
+cp opencode.json ~/.config/opencode/
 
 # telepresence
 brew install telepresenceio/telepresence/telepresence-oss
