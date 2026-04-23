@@ -90,6 +90,7 @@ EOF
 # dns resolution azure stuff
 sudo mkdir /etc/resolver
 sudo cp ./etc/resolver/* /etc/resolver/
+install ./bin/*.sh /usr/local/bin
 
 # tmux
 brew install tmux
