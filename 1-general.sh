@@ -92,8 +92,8 @@ sudo mkdir /etc/resolver
 sudo cp ./etc/resolver/* /etc/resolver/
 install ./bin/*.sh /usr/local/bin
 cat <<'EOF' >>~/.zshrc
-prod_dns="pass cgnx | sudo -S switch-prod.sh"
-nonprod_dns="pass cgnx | sudo -S switch-nonprod.sh"
+alias prod_dns="pass cgnx | sudo -S switch-prod.sh"
+alias nonprod_dns="pass cgnx | sudo -S switch-nonprod.sh"
 EOF
 
 # tmux
