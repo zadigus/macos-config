@@ -96,6 +96,9 @@ alias prod_dns="pass cgnx | sudo -S switch-prod.sh"
 alias nonprod_dns="pass cgnx | sudo -S switch-nonprod.sh"
 EOF
 
+# nvim
+brew install nvim
+
 # tmux
 brew install tmux
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
