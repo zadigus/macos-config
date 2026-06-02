@@ -98,6 +98,7 @@ EOF
 
 # nvim
 brew install nvim
+git clone git@github.com:zadigus/neovim-wsl.git ~/.config/nvim
 
 # tmux
 brew install tmux
@@ -134,12 +135,6 @@ cp direnv.toml ~/.config/direnv/
 # git
 brew install lazygit
 cp lazygit-config.yml ~/Library/Application\ Support/lazygit/config.yml
-ssh-keygen -t ed25519 -b 4096 -C "laurent.michel@cognex.com" -f ~/.ssh/git_rsa
-cat <<'EOF' >>~/.zshrc
-eval "$(ssh-agent -s)" > /dev/null
-ssh-add ~/.ssh/git_rsa ssh-add > /dev/null 2>&1
-autoload -Uz compinit && compinit
-EOF
 cp git-ssh.sh ~/.config/cognex/
 
 brew install git-lfs
@@ -147,6 +142,7 @@ git lfs install
 
 # obsidian
 brew install --cask obsidian
+git clone git@github.com:zadigus/math-notes.git ~/Documents/obsidian/math
 
 # golang
 brew install go
@@ -331,7 +327,7 @@ EOF
 # opencode / copilot-cli
 brew install anomalyco/tap/opencode copilot-cli
 
-# superpowers
+# opencode setup
 if [ -d ~/.config/opencode/superpowers ]; then
     cd ~/.config/opencode/superpowers && git pull
 else
@@ -346,6 +342,14 @@ git clone ssh://git@usaw-bitbucketp01.pc.cognex.com:7999/~lmichel/skills.git ~/.
 git clone git@github.com:zadigus/skills.git ~/.config/opencode/skills/zadigus
 git clone ssh://git@usaw-bitbucketp01.pc.cognex.com:7999/~lmichel/agents.git ~/.config/opencode/agents
 cp opencode.json ~/.config/opencode/
+
+# copilot-cli setup
+mkdir -p ~/.github ~/.github/skills
+copilot plugin marketplace add obra/superpowers-marketplace
+copilot plugin install superpowers@superpowers-marketplace
+git clone ssh://git@usaw-bitbucketp01.pc.cognex.com:7999/~lmichel/agents.git ~/.github/agents
+git clone ssh://git@usaw-bitbucketp01.pc.cognex.com:7999/~lmichel/skills.git ~/.github/skills/skills-lmichel
+git clone git@github.com:zadigus/skills.git ~/.github/skills/zadigus
 
 # telepresence
 brew install telepresenceio/telepresence/telepresence-oss
