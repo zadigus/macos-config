@@ -153,11 +153,11 @@ EOF
 
 # python
 curl -LsSf https://astral.sh/uv/install.sh | sh
-uv python install 3.10 3.11 3.12 3.13 3.14
 cat <<'EOF' >>~/.zshrc
 export PATH=~/.local/bin:$PATH
 EOF
 source ~/.zshrc
+uv python install 3.10 3.11 3.12 3.13 3.14
 
 # terraform
 brew tap hashicorp/tap
