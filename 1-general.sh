@@ -204,9 +204,6 @@ opam install coq
 # luarocks
 brew install luarocks
 
-# neovim
-brew install vim neovim
-
 # vim config
 cat <<EOF >>~/.vimrc
 inoremap jk <Esc>
