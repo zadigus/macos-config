@@ -176,7 +176,8 @@ cat <<'EOF' >>~/.zshrc
 alias azl="az login --tenant 35f551b8-4936-4cae-b5d5-ede25fc4816f"
 EOF
 
-cat ${path_to_cert} >>/opt/homebrew/Cellar/azure-cli/2.71.0/libexec/lib/python3.12/site-packages/certifi/cacert.pem
+# TODO: the cli version and the python version should be gathered beforehand
+cat ${path_to_cert} >>/opt/homebrew/Cellar/azure-cli/2.87.0/libexec/lib/python3.13/site-packages/certifi/cacert.pem
 
 # nodejs
 brew install node
