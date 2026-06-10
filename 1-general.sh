@@ -12,6 +12,7 @@ brew upgrade
 brew install wget
 
 # certs
+mkdir -p ~/.config/cognex
 path_to_cert=~/.config/cognex/CGNX_cacert.pem
 wget http://usna-wbscrptp01.pc.cognex.com/COMBINED_CERT_PACKAGE.pem -O ${path_to_cert}
 sudo security add-trusted-cert -d -r trustRoot -k /Library/Keychains/System.keychain ${path_to_cert}
