@@ -279,9 +279,9 @@ EOF
 k8scontainer_config_path=~/.config/cognex/k8scontainer.yaml
 cp k8scontainer.yaml $k8scontainer_config_path
 
-cat <<EOF >>~./zshrc
+cat <<'EOF' >>~/.zshrc
 k8sup() {
-    envsubst '$PWD $HOME' < ${k8scontainer_config_path} | ./.k8scontainer/up.sh -c -
+    envsubst '$PWD $HOME' < ~/.config/cognex/k8scontainer.yaml | ./.k8scontainer/up.sh -c -
 
     export $(cat .k8scontainer/.env | xargs)
 
