@@ -274,7 +274,7 @@ EOF
 
 # k8scontainer
 k8scontainer_config_path=~/.config/cognex/k8scontainer.yaml
-cp k8scontainer.json $k8scontainer_config_path
+cp k8scontainer.yaml $k8scontainer_config_path
 
 cat <<EOF >>~./zshrc
 k8sup() {
