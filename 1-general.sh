@@ -173,7 +173,7 @@ brew install --cask docker-desktop
 
 # Azure
 brew install azure-cli
-sudo az aks install-cli
+sudo -E az aks install-cli
 go install github.com/netr0m/az-pim-cli@latest
 
 cat <<'EOF' >>~/.zshrc
