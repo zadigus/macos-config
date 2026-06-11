@@ -105,6 +105,7 @@ git clone git@github.com:zadigus/neovim-wsl.git ~/.config/nvim
 brew install tmux
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 cp .tmux.conf ~/
+~/.tmux/plugins/tpm/bin/install_plugins
 
 # eza
 brew install eza
