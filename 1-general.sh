@@ -167,6 +167,9 @@ brew install terragrunt
 # k8s
 brew install kubectl helm derailed/k9s/k9s kubectx jinja2-cli
 
+# docker
+brew install --cask docker-desktop
+
 # Azure
 brew install azure-cli
 az aks install-cli
