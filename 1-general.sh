@@ -145,6 +145,10 @@ git lfs install
 # obsidian
 brew install --cask obsidian
 git clone git@github.com:zadigus/math-notes.git ~/Documents/obsidian/math
+git clone ssh://git@usaw-bitbucketp01.pc.cognex.com:7999/~lmichel/obsidian-cognex.git ~/Documents/obsidian/lmichel
+git clone git@github.com:zadigus/magyar.git ~/Documents/obsidian/magyar
+git clone ssh://git@usaw-bitbucketp01.pc.cognex.com:7999/~lmichel/obsidian-soc2.git ~/Documents/obsidian/soc2
+git clone git@github.com:zadigus/srpski.git ~/Documents/obsidian/srpski
 
 # golang
 brew install go
