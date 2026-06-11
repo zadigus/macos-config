@@ -34,6 +34,21 @@ brew install --cask karabiner-elements
 mkdir -p ~/.config/karabiner
 cp ./karabiner.json ~/.config/karabiner
 
+# macOS keyboard shortcuts - set Hyper + C for window cycling
+# This sets "Move focus to next window" (symbolic hotkey ID 27) to Cmd+Ctrl+Opt+Shift+C
+# Since Caps Lock is mapped to Hyper via Karabiner, this becomes Hyper + C
+defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 27 \
+  "<dict><key>enabled</key><true/><key>value</key><dict>\
+<key>type</key><string>standard</string>\
+<key>parameters</key><array>\
+<integer>99</integer>\
+<integer>8</integer>\
+<integer>1966080</integer>\
+</array></dict></dict>"
+
+# Apply keyboard shortcut changes
+/System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u
+
 # wezterm
 brew install --cask wezterm
 brew install font-meslo-lg-nerd-font
