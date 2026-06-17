@@ -38,7 +38,7 @@ cp ./karabiner.json ~/.config/karabiner
 # This sets "Move focus to next window" (symbolic hotkey ID 27) to Cmd+Ctrl+Opt+Shift+C
 # Since Caps Lock is mapped to Hyper via Karabiner, this becomes Hyper + C
 defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 27 \
-  "<dict><key>enabled</key><true/><key>value</key><dict>\
+    "<dict><key>enabled</key><true/><key>value</key><dict>\
 <key>type</key><string>standard</string>\
 <key>parameters</key><array>\
 <integer>99</integer>\
@@ -155,7 +155,7 @@ cp lazygit-config.yml ~/Library/Application\ Support/lazygit/config.yml
 cp git-ssh.sh ~/.config/cognex/
 
 brew install git-lfs
-git lfs install
+sudo git lfs install --system
 
 # obsidian
 brew install --cask obsidian
