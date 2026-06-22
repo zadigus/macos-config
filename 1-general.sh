@@ -381,6 +381,11 @@ ollama pull qwen3-coder:30b
 ollama pull deepseek-r1:32b
 ollama pull nomic-embed-text
 
+cat <<'EOF' >>~/.zshrc
+export OLLAMA_MAX_LOADED_MODELS=2
+export OLLAMA_CONTEXT_LENGTH=128000
+EOF
+
 # telepresence
 brew install telepresenceio/telepresence/telepresence-oss
 
