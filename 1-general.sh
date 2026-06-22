@@ -373,6 +373,14 @@ git clone ssh://git@usaw-bitbucketp01.pc.cognex.com:7999/~lmichel/agents.git ~/.
 git clone ssh://git@usaw-bitbucketp01.pc.cognex.com:7999/~lmichel/skills.git ~/.github/skills/skills-lmichel
 git clone git@github.com:zadigus/skills.git ~/.github/skills/zadigus
 
+# ollama
+curl -fsSL https://ollama.com/install.sh | sh
+
+ollama pull qwen2.5-coder:32b
+ollama pull qwen3-coder:30b
+ollama pull deepseek-r1:32b
+ollama pull nomic-embed-text
+
 # telepresence
 brew install telepresenceio/telepresence/telepresence-oss
 
