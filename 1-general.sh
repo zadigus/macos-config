@@ -380,6 +380,7 @@ ollama pull qwen2.5-coder:32b
 ollama pull qwen3-coder:30b
 ollama pull deepseek-r1:32b
 ollama pull nomic-embed-text
+ollama pull gemma4:31b
 
 cat <<'EOF' >>~/.zshrc
 export OLLAMA_MAX_LOADED_MODELS=2
