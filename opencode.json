@@ -14,11 +14,8 @@
         "baseURL": "http://localhost:11434/v1"
       },
       "models": {
-        "qwen2.5-coder:32b": {
-          "name": "Qwen2.5-Coder 32B"
-        },
-        "qwen3-coder:30b": {
-          "name": "Qwen3-Coder 30B"
+        "qwen3.6:35b": {
+          "name": "Qwen3.6 35B"
         },
         "deepseek-r1:32b": {
           "name": "DeepSeek-R1 32B"
