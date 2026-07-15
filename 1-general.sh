@@ -165,6 +165,12 @@ git clone git@github.com:zadigus/magyar.git ~/Documents/obsidian/magyar
 git clone ssh://git@usaw-bitbucketp01.pc.cognex.com:7999/~lmichel/obsidian-soc2.git ~/Documents/obsidian/soc2
 git clone git@github.com:zadigus/srpski.git ~/Documents/obsidian/srpski
 
+# psql
+brew install libpq
+cat <<'EOF' >>~/.zshrc
+export PATH=/opt/homebrew/opt/libpq/bin:$PATH
+EOF
+
 # golang
 brew install go
 cat <<'EOF' >>~/.zshrc
@@ -220,41 +226,41 @@ EOF
 # https://download.jetbrains.com/teamcity-repository).
 java_home_21=$(/usr/libexec/java_home -v 21)
 if ! sudo "${java_home_21}/bin/keytool" -list -keystore "${java_home_21}/lib/security/cacerts" -storepass changeit -alias cognex-ca >/dev/null 2>&1; then
-  sudo "${java_home_21}/bin/keytool" -importcert -trustcacerts \
-    -keystore "${java_home_21}/lib/security/cacerts" \
-    -storepass changeit \
-    -alias cognex-ca \
-    -file "${path_to_cert}" \
-    -noprompt
+    sudo "${java_home_21}/bin/keytool" -importcert -trustcacerts \
+        -keystore "${java_home_21}/lib/security/cacerts" \
+        -storepass changeit \
+        -alias cognex-ca \
+        -file "${path_to_cert}" \
+        -noprompt
 fi
 
 # Some corporate TLS paths are intercepted by the firewall and present a
 # different chain (issuer CN=ssl.firewall.pc.cognex.com, root
 # CN=pc-USNA-ROOTCAP01-CA). Import that chain too so Maven can resolve
 # TeamCity DSL artifacts from download.jetbrains.com without PKIX warnings.
-openssl s_client -showcerts -servername download.jetbrains.com -connect download.jetbrains.com:443 </dev/null \
-  | awk '/-----BEGIN CERTIFICATE-----/{i++} {print > ("/tmp/jb-cert-" i ".pem")}'
+openssl s_client -showcerts -servername download.jetbrains.com -connect download.jetbrains.com:443 </dev/null |
+    awk '/-----BEGIN CERTIFICATE-----/{i++} {print > ("/tmp/jb-cert-" i ".pem")}'
 
 # The observed order is:
 #   /tmp/jb-cert-1.pem -> leaf (CN=download.jetbrains.com)
 #   /tmp/jb-cert-2.pem -> issuer (CN=ssl.firewall.pc.cognex.com)
 #   /tmp/jb-cert-3.pem -> root (CN=pc-USNA-ROOTCAP01-CA)
 if ! sudo "${java_home_21}/bin/keytool" -list -keystore "${java_home_21}/lib/security/cacerts" -storepass changeit -alias ssl-firewall-pc-cognex-com >/dev/null 2>&1; then
-  sudo "${java_home_21}/bin/keytool" -importcert -trustcacerts \
-    -keystore "${java_home_21}/lib/security/cacerts" \
-    -storepass changeit \
-    -alias ssl-firewall-pc-cognex-com \
-    -file /tmp/jb-cert-2.pem \
-    -noprompt
+    sudo "${java_home_21}/bin/keytool" -importcert -trustcacerts \
+        -keystore "${java_home_21}/lib/security/cacerts" \
+        -storepass changeit \
+        -alias ssl-firewall-pc-cognex-com \
+        -file /tmp/jb-cert-2.pem \
+        -noprompt
 fi
 
 if ! sudo "${java_home_21}/bin/keytool" -list -keystore "${java_home_21}/lib/security/cacerts" -storepass changeit -alias pc-usna-rootcap01-ca >/dev/null 2>&1; then
-  sudo "${java_home_21}/bin/keytool" -importcert -trustcacerts \
-    -keystore "${java_home_21}/lib/security/cacerts" \
-    -storepass changeit \
-    -alias pc-usna-rootcap01-ca \
-    -file /tmp/jb-cert-3.pem \
-    -noprompt
+    sudo "${java_home_21}/bin/keytool" -importcert -trustcacerts \
+        -keystore "${java_home_21}/lib/security/cacerts" \
+        -storepass changeit \
+        -alias pc-usna-rootcap01-ca \
+        -file /tmp/jb-cert-3.pem \
+        -noprompt
 fi
 
 # If Maven cached certificate failures before the cert import, force refresh:
