@@ -91,6 +91,7 @@ EOF
 
 source ~/.zshrc
 
+# if we don't like it, we can remove the "beginning" in the history key to bind below
 cat <<'EOF' >>~/.zshrc
 HISTFILE=$HOME/.zhistory
 SAVEHIST=1000
@@ -99,8 +100,8 @@ setopt share_history
 setopt hist_expire_dups_first
 setopt hist_ignore_dups
 setopt hist_verify
-bindkey '^[[A' history-search-backward
-bindkey '^[[B' history-search-forward
+bindkey '^[[A' history-beginning-search-backward
+bindkey '^[[B' history-beginning-search-forward
 EOF
 
 # dns resolution azure stuff
