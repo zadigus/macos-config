@@ -191,6 +191,17 @@ brew tap hashicorp/tap
 brew install hashicorp/tap/terraform
 brew install terragrunt
 
+cat <<'EOF' >>~/.zshrc
+# Force macOS system (cgo) DNS resolver for Terraform tooling.
+terraform() {
+  GODEBUG=netdns=cgo command terraform "$@"
+}
+
+terragrunt() {
+  GODEBUG=netdns=cgo command terragrunt "$@"
+}
+EOF
+
 # k8s
 brew install kubectl helm derailed/k9s/k9s kubectx jinja2-cli
 
