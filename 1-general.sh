@@ -217,8 +217,24 @@ cat <<'EOF' >>~/.zshrc
 alias azl="az login --tenant 35f551b8-4936-4cae-b5d5-ede25fc4816f"
 EOF
 
-# TODO: the cli version and the python version should be gathered beforehand
-cat ${path_to_cert} >>/opt/homebrew/Cellar/azure-cli/2.87.0/libexec/lib/python3.13/site-packages/certifi/cacert.pem
+# Make az work behind the Cognex SSL-decrypting firewall. Every brew upgrade of
+# azure-cli installs a fresh vendored python + certifi bundle and wipes this, so
+# the fix is a re-runnable script wired into a brew wrapper below.
+./bin/cgnx-az-fix-ssl.sh
+
+cat <<'EOF' >>~/.zshrc
+export PATH=$HOME/workspace/macos-config/bin:$PATH
+
+# azure-cli loses its Cognex CA patch on every reinstall - re-apply it silently
+brew() {
+    command brew "$@"
+    local status=$?
+    case "$1" in
+    upgrade | install | reinstall) cgnx-az-fix-ssl.sh >/dev/null 2>&1 ;;
+    esac
+    return ${status}
+}
+EOF
 
 # nodejs
 brew install node
