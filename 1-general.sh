@@ -228,11 +228,11 @@ export PATH=$HOME/workspace/macos-config/bin:$PATH
 # azure-cli loses its Cognex CA patch on every reinstall - re-apply it silently
 brew() {
     command brew "$@"
-    local status=$?
+    local rc=$?
     case "$1" in
     upgrade | install | reinstall) cgnx-az-fix-ssl.sh >/dev/null 2>&1 ;;
     esac
-    return ${status}
+    return ${rc}
 }
 EOF
 
