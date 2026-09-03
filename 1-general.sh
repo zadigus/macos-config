@@ -230,7 +230,7 @@ brew() {
     command brew "$@"
     local rc=$?
     case "$1" in
-    upgrade | install | reinstall) cgnx-az-fix-ssl.sh >/dev/null 2>&1 ;;
+    upgrade | install | reinstall) cgnx-az-fix-ssl.sh >/dev/null 2>&1 ; az extension remove -n ssh && az extension add -n ssh >/dev/null ;;
     esac
     return ${rc}
 }
