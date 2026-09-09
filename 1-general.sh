@@ -482,3 +482,6 @@ git clone ssh://git@usaw-bitbucketp01.pc.cognex.com:7999/mdl/mirrord-setup.git ~
 cat <<'EOF' >>~/.zshrc
 alias setup_mirrord="$HOME/workspace/mirrord-setup/setup-mirrord.sh"
 EOF
+
+# redis-cli -> command rdcli
+npm install -g redis-cli
