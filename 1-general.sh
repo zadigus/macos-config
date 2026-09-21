@@ -249,6 +249,9 @@ export JAVA_HOME=$(/usr/libexec/java_home -v 21)
 export PATH=${JAVA_HOME}/bin:${PATH}
 EOF
 
+# teamcity
+brew install jetbrains/utils/teamcity
+
 # Make Java trust the Cognex root cert as well (needed for Maven/TeamCity DSL
 # downloads from corporate/proxied HTTPS endpoints such as
 # https://download.jetbrains.com/teamcity-repository).
