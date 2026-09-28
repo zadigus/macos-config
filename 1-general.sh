@@ -470,6 +470,7 @@ ollama pull qwen3.6:35b
 ollama pull deepseek-r1:32b
 ollama pull nomic-embed-text
 ollama pull gemma4:31b
+ollama pull jobautomation/OpenEuroLLM-Hungarian
 
 cat <<'EOF' >>~/.zshrc
 export OLLAMA_MAX_LOADED_MODELS=2
