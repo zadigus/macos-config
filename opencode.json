@@ -25,9 +25,6 @@
         },
         "gemma4:31b": {
           "name": "Gemma 4 31B"
-        },
-        "jobautomation/OpenEuroLLM-Hungarian": {
-          "name": "Hungarian LLM"
         }
       }
     }
