@@ -28,13 +28,24 @@ EOF
 
 # raycast
 brew install --cask raycast
+defaults write com.raycast.macos raycastGlobalHotkey -string "Command-49"
 
 # karabiner
 brew install --cask karabiner-elements
 mkdir -p ~/.config/karabiner
 cp ./karabiner.json ~/.config/karabiner
 
-# macOS keyboard shortcuts - set Hyper + C for window cycling
+# macOS keyboard shortcuts
+# Disable Spotlight's Cmd+Space so Raycast can use it.
+defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 64 \
+    '<dict><key>enabled</key><false/><key>value</key><dict><key>type</key><string>standard</string><key>parameters</key><array><integer>32</integer><integer>49</integer><integer>1048576</integer></array></dict></dict>'
+
+# Disable Ctrl+Space (previous input source); use Ctrl+Opt+Space for the next one.
+defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 60 \
+    '<dict><key>enabled</key><false/><key>value</key><dict><key>type</key><string>standard</string><key>parameters</key><array><integer>32</integer><integer>49</integer><integer>262144</integer></array></dict></dict>'
+defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 61 \
+    '<dict><key>enabled</key><true/><key>value</key><dict><key>type</key><string>standard</string><key>parameters</key><array><integer>32</integer><integer>49</integer><integer>786432</integer></array></dict></dict>'
+
 # This sets "Move focus to next window" (symbolic hotkey ID 27) to Cmd+Ctrl+Opt+Shift+C
 # Since Caps Lock is mapped to Hyper via Karabiner, this becomes Hyper + C
 defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 27 \

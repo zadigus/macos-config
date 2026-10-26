@@ -24,7 +24,7 @@
           {
             "manipulators": [
               {
-                "description": "Change command+control+a to control+b",
+                "description": "Change right_shift+left_control+a to control+b",
                 "from": {
                   "key_code": "a",
                   "modifiers": {
@@ -49,4 +49,3 @@
     }
   ]
 }
-
