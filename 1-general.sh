@@ -1,6 +1,8 @@
 #! /bin/sh
 
 # homebrew
+# Disable Homebrew confirmation prompts, including during initial installation.
+export NONINTERACTIVE=1
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 echo >>/Users/lmichel/.zprofile
 echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >>/Users/lmichel/.zprofile
@@ -195,7 +197,7 @@ cat <<'EOF' >>~/.zshrc
 export PATH=~/.local/bin:$PATH
 EOF
 source ~/.zshrc
-uv python install 3.10 3.11 3.12 3.13 3.14
+uv python install 3.10 3.11 3.12 3.13 3.14 3.15
 
 # terraform
 brew tap hashicorp/tap
@@ -241,7 +243,7 @@ brew() {
     command brew "$@"
     local rc=$?
     case "$1" in
-    upgrade | install | reinstall) cgnx-az-fix-ssl.sh >/dev/null 2>&1 ; az extension remove -n ssh && az extension add -n ssh >/dev/null ;;
+    upgrade | install | reinstall) cgnx-az-fix-ssl.sh >/dev/null 2>&1 ; az extension remove -n ssh --yes && az extension add -n ssh >/dev/null ;;
     esac
     return ${rc}
 }
