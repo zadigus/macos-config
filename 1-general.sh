@@ -227,6 +227,10 @@ brew install --cask docker-desktop
 # Azure
 brew install azure-cli
 sudo -E az aks install-cli
+# Restore ownership of Azure CLI config files created by sudo.
+if [ -d "$HOME/.azure" ]; then
+    sudo chown -R "$(id -un):$(id -gn)" "$HOME/.azure"
+fi
 go install github.com/netr0m/az-pim-cli@latest
 
 cat <<'EOF' >>~/.zshrc
