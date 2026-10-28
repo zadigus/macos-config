@@ -32,6 +32,12 @@ EOF
 brew install --cask raycast
 defaults write com.raycast.macos raycastGlobalHotkey -string "Command-49"
 
+# raycast settings import (interactive)
+# Complete the import in Raycast, including Settings, Aliases & Hotkeys.
+# Enter the export passphrase if prompted.
+raycast_config_path="$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)/raycast.rayconfig"
+open -a Raycast "$raycast_config_path"
+
 # karabiner
 brew install --cask karabiner-elements
 mkdir -p ~/.config/karabiner
