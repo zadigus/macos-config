@@ -73,6 +73,17 @@ brew install --cask spotify
 # google chrome
 brew install --cask google-chrome
 
+# desktop wallpaper
+wallpaper_path="$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)/venom.jpg"
+osascript - "$wallpaper_path" <<'EOF'
+on run argv
+    set wallpaperFile to POSIX file (item 1 of argv)
+    tell application "System Events"
+        set picture of every desktop to wallpaperFile
+    end tell
+end run
+EOF
+
 # pass
 brew install gnupg pass pinentry-mac
 gpgconf --kill gpg-agent
