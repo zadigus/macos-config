@@ -240,8 +240,10 @@ EOF
 # Make az work behind the Cognex SSL-decrypting firewall. Every brew upgrade of
 # azure-cli installs a fresh vendored python + certifi bundle and wipes this, so
 # the fix is a re-runnable script wired into a brew wrapper below.
+# TODO: this is probably not necessary anymore
 ./bin/cgnx-az-fix-ssl.sh
 
+# TODO: it's probably not necessary anymore to call cgnx-az-fix-ssl.sh
 cat <<'EOF' >>~/.zshrc
 export PATH=$HOME/workspace/macos-config/bin:$PATH
 
