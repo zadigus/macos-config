@@ -70,6 +70,9 @@ cp ./.wezterm.lua ~/
 # spotify
 brew install --cask spotify
 
+# google chrome
+brew install --cask google-chrome
+
 # pass
 brew install gnupg pass pinentry-mac
 gpgconf --kill gpg-agent
