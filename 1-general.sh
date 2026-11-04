@@ -254,22 +254,12 @@ cat <<'EOF' >>~/.zshrc
 alias azl="az login --tenant 35f551b8-4936-4cae-b5d5-ede25fc4816f"
 EOF
 
-# Make az work behind the Cognex SSL-decrypting firewall. Every brew upgrade of
-# azure-cli installs a fresh vendored python + certifi bundle and wipes this, so
-# the fix is a re-runnable script wired into a brew wrapper below.
-# TODO: this is probably not necessary anymore
-./bin/cgnx-az-fix-ssl.sh
-
-# TODO: it's probably not necessary anymore to call cgnx-az-fix-ssl.sh
 cat <<'EOF' >>~/.zshrc
-export PATH=$HOME/workspace/macos-config/bin:$PATH
-
-# azure-cli loses its Cognex CA patch on every reinstall - re-apply it silently
 brew() {
     command brew "$@"
     local rc=$?
     case "$1" in
-    upgrade | install | reinstall) cgnx-az-fix-ssl.sh >/dev/null 2>&1 ; az extension remove -n ssh --yes && az extension add -n ssh >/dev/null ;;
+    upgrade | install | reinstall) az extension remove -n ssh && az extension add -n ssh >/dev/null ;;
     esac
     return ${rc}
 }
