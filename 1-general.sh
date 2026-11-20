@@ -3,6 +3,7 @@
 # homebrew
 # Disable Homebrew confirmation prompts, including during initial installation.
 export NONINTERACTIVE=1
+
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 echo >>/Users/lmichel/.zprofile
 echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >>/Users/lmichel/.zprofile
@@ -474,14 +475,15 @@ if [ -d ~/.config/opencode/superpowers ]; then
 else
     git clone https://github.com/obra/superpowers.git ~/.config/opencode/superpowers
 fi
-mkdir -p ~/.config/opencode/plugins ~/.config/opencode/skills
+mkdir -p ~/.config/opencode/plugins ~/.config/opencode/skills ~/.config/opencode/agents
 rm -rf ~/.config/opencode/skills/superpowers ~/.config/opencode/plugins/superpowers.js
 ln -s ~/.config/opencode/superpowers/.opencode/plugins/superpowers.js ~/.config/opencode/plugins/superpowers.js
 ln -s ~/.config/opencode/superpowers/skills ~/.config/opencode/skills/superpowers
 
 git clone ssh://git@usaw-bitbucketp01.pc.cognex.com:7999/~lmichel/skills.git ~/.config/opencode/skills/skills-lmichel
 git clone git@github.com:zadigus/skills.git ~/.config/opencode/skills/zadigus
-git clone ssh://git@usaw-bitbucketp01.pc.cognex.com:7999/~lmichel/agents.git ~/.config/opencode/agents
+git clone ssh://git@usaw-bitbucketp01.pc.cognex.com:7999/~lmichel/agents.git ~/.config/opencode/agents/cognex
+git clone git@github.com:zadigus/agents.git ~/.config/opencode/agents/zadigus
 cp opencode.json ~/.config/opencode/
 
 # copilot-cli setup
@@ -492,18 +494,21 @@ git clone ssh://git@usaw-bitbucketp01.pc.cognex.com:7999/~lmichel/agents.git ~/.
 git clone ssh://git@usaw-bitbucketp01.pc.cognex.com:7999/~lmichel/skills.git ~/.github/skills/skills-lmichel
 git clone git@github.com:zadigus/skills.git ~/.github/skills/zadigus
 
+# docker sandbox
+brew install docker/tap/sbx
+
 # ollama
-curl -fsSL https://ollama.com/install.sh | sh
-
-ollama pull qwen3.6:35b
-ollama pull deepseek-r1:32b
-ollama pull nomic-embed-text
-ollama pull gemma4:31b
-
-cat <<'EOF' >>~/.zshrc
-export OLLAMA_MAX_LOADED_MODELS=2
-export OLLAMA_CONTEXT_LENGTH=128000
-EOF
+# curl -fsSL https://ollama.com/install.sh | sh
+#
+# ollama pull qwen3.6:35b
+# ollama pull deepseek-r1:32b
+# ollama pull nomic-embed-text
+# ollama pull gemma4:31b
+#
+# cat <<'EOF' >>~/.zshrc
+# export OLLAMA_MAX_LOADED_MODELS=2
+# export OLLAMA_CONTEXT_LENGTH=128000
+# EOF
 
 # telepresence
 brew install telepresenceio/telepresence/telepresence-oss
