@@ -522,3 +522,17 @@ EOF
 
 # redis-cli -> command rdcli
 npm install -g redis-cli
+
+# aws cli
+brew install awscli
+
+# click the access token in https://d-906717cf23.awsapps.com/start/#/?tab=accounts
+# to get the information required for this command:
+aws configure sso
+
+aws_profile=$(aws configure list-profiles)
+cat <<EOF >>~/.zshrc
+export AWS_PROFILE=${aws_profile}
+EOF
+
+aws sso login
