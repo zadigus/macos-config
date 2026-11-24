@@ -1,5 +1,7 @@
 #! /bin/sh
 
+config_dir="$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)"
+
 # homebrew
 # Disable Homebrew confirmation prompts, including during initial installation.
 export NONINTERACTIVE=1
@@ -466,12 +468,13 @@ alias k8sdown="./.k8scontainer/down.sh"
 alias k8sdownall="./.k8scontainer/down_all.sh"
 EOF
 
-# opencode / copilot-cli
+# opencode / copilot-cli / codex
 brew install anomalyco/tap/opencode copilot-cli
+brew install --cask codex
 
 # opencode setup
 if [ -d ~/.config/opencode/superpowers ]; then
-    cd ~/.config/opencode/superpowers && git pull
+    (cd ~/.config/opencode/superpowers && git pull)
 else
     git clone https://github.com/obra/superpowers.git ~/.config/opencode/superpowers
 fi
@@ -485,6 +488,10 @@ git clone git@github.com:zadigus/skills.git ~/.config/opencode/skills/zadigus
 git clone ssh://git@usaw-bitbucketp01.pc.cognex.com:7999/~lmichel/agents.git ~/.config/opencode/agents/cognex
 git clone git@github.com:zadigus/agents.git ~/.config/opencode/agents/zadigus
 cp opencode.json ~/.config/opencode/
+
+# codex: share OpenCode skill checkouts and register native agent adapters.
+# Rerun this helper after adding agents to either shared repository.
+ruby "$config_dir/bin/setup-codex.rb"
 
 # copilot-cli setup
 mkdir -p ~/.github ~/.github/skills
